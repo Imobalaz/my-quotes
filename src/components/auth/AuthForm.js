@@ -1,7 +1,7 @@
 import Card from "../UI/Card";
 import classes from "./AuthForm.module.css";
 import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import useInput from "../../hooks/use-input";
 import AuthContext from "../../store/auth-context";
@@ -193,11 +193,11 @@ const AuthForm = () => {
           )}
           {!isLoading && <div className={classes.actions}>
             <button type="button" onClick={formSubmitHandler}>
-              {isLogin ? "Login" : "Create new account"}
+              {isLogin ? "Login" : "Sign Up"}
             </button>
-            <button type="button" onClick={switchAuthModeHandler}>
-              {isLogin ? "Create a new account" : "Login with existing account"}
-            </button>
+            <p onClick={switchAuthModeHandler}>
+              {isLogin ? "Not a member? Create an account" : "Login with existing account"}
+            </p>
           </div>}
           {isLoading && <LoadingSpinner />}
         </form>

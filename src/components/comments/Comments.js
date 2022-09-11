@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
 import classes from "./Comments.module.css";
@@ -7,8 +7,10 @@ import useHttp from "../../hooks/use-http";
 import { getAllComments } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import CommentsList from "./CommentsList";
+import AuthContext from "../../store/auth-context";
 
 const Comments = () => {
+  const authCtx = useContext(AuthContext);
   const [isAddingComment, setIsAddingComment] = useState(false);
   const params = useParams();
 
@@ -52,12 +54,12 @@ const Comments = () => {
   return (
     <section className={classes.comments}>
       <h2>User Comments</h2>
-      {!isAddingComment && (
+      {!isAddingComment && authCtx.userIsLoggedIn && (
         <button className="btn" onClick={startAddCommentHandler}>
           Add a Comment
         </button>
       )}
-      {isAddingComment && (
+      {isAddingComment && authCtx.userIsLoggedIn &&  (
         <NewCommentForm
           quoteId={quoteId}
           onAddedComment={addedCommentHandler}

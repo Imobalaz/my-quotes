@@ -4,13 +4,14 @@ import Comments from '../components/comments/Comments'
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import { getSingleQuote } from "../lib/api";
 import useHttp from "../hooks/use-http";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-
+import AuthContext from "../store/auth-context";
 
 const QouteDetail = () => {
     const {sendRequest, status, data: loadedQuote} = useHttp(getSingleQuote, true);
     const match = useRouteMatch()
+    const authCtx = useContext(AuthContext)
     const params  = useParams()
     const { quoteId } = params;
     useEffect(() => {
@@ -34,13 +35,15 @@ const QouteDetail = () => {
             <h1>Qoutes Detail</h1>
             <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author} />
 
-            <Route path={match.path} exact>
+            {authCtx.userIsLoggedIn && <Route path={match.path} exact>
               <div className="centered">
                 <Link className="btn--flat" to={`${match.url}/comments`}>
                   Comment
                 </Link>
               </div>
-            </Route>
+            </Route>}
+
+            {!authCtx.userIsLoggedIn && <Comments />}
 
             <Route path={`${match.path}/comments`}>
               <Comments />

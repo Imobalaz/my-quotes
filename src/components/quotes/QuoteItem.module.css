@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   background-color: #c2e7f0;
@@ -34,4 +35,30 @@
 .item figcaption {
   font-style: italic;
   color: #566d6d;
+}
+
+@media screen and (max-width: 600px) {
+  .item {
+    padding: 0.5rem
+  }
+
+  .item blockquote {
+    font-size: 1rem;
+  }
+
+  .item p {
+    margin-bottom: 0.2rem;
+  }
+
+  .item figcaption {
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    height: 1.7rem;
+    font-size: 0.9rem;
+    padding: 5px 9px;
+  }
+
+
 }
