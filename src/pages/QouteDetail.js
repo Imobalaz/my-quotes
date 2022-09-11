@@ -26,13 +26,13 @@ const QouteDetail = () => {
 
 
     if (status === "completed" && !loadedQuote.text) {
-      return <div className="centered">No qoute found!</div>;
+      return <div className="centered">No quote found!</div>;
     }
     
 
         return (
           <Fragment>
-            <h1>Qoutes Detail</h1>
+            <h1>Quotes Detail</h1>
             <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author} />
 
             {authCtx.userIsLoggedIn && <Route path={match.path} exact>
