@@ -16,6 +16,20 @@ body {
   align-items: center;
 }
 
+.error-text {
+  color: #b40e0e;
+}
+
+.invalid input {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.invalid input:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
 .focused {
   font-size: 3rem;
   font-weight: bold;
@@ -53,4 +67,11 @@ body {
 .btn--flat:active {
   background-color: teal;
   color: white;
+}
+
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
 }
